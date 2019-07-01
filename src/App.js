@@ -15,16 +15,21 @@ import getTheme from './native-base-theme/components'
 
 import {createDrawerNavigator , createAppContainer} from 'react-navigation'
 
+import {SideBar} from './components/'
+
 // pages: 
 import {MainPage} from './pages/MainPage'
 
 I18nManager.forceRTL(false)
 I18nManager.allowRTL(false)
 
+
+
 const DrawerNvigator = createDrawerNavigator({ 
   MainPage
 } , { 
-  drawerPosition : 'right',
+  drawerPosition : 'right', 
+  contentComponent : SideBar
 })
 
 const MainNavigator = createAppContainer(DrawerNvigator)
