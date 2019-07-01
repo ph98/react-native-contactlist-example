@@ -10,35 +10,44 @@ import React, {Component} from 'react'
 
 import {I18nManager } from 'react-native'
 import commonColor from './native-base-theme/variables/commonColor'
-import {Text , StyleProvider } from 'native-base'
+import {StyleProvider } from 'native-base'
 import getTheme from './native-base-theme/components'
 
-import {createDrawerNavigator , createAppContainer} from 'react-navigation'
+import {createDrawerNavigator , createAppContainer, createSwitchNavigator} from 'react-navigation'
 
 import {SideBar} from './components/'
 
 // pages: 
-import {MainPage} from './pages/MainPage'
-
+import {MainPage , LoadingPage , SignUpPage , LoginPage} from './pages'
 I18nManager.forceRTL(false)
 I18nManager.allowRTL(false)
 
 
 
 const DrawerNvigator = createDrawerNavigator({ 
-  MainPage
+	MainPage
 } , { 
-  drawerPosition : 'right', 
-  contentComponent : SideBar
+	drawerPosition : 'right', 
+	contentComponent : SideBar
 })
 
-const MainNavigator = createAppContainer(DrawerNvigator)
+const AuthNavigator = createSwitchNavigator({
+	LoadingPage ,
+	SignUpPage ,
+	LoginPage , 
+	DrawerNvigator
+} , { 
+	initialRouteName :'LoadingPage' ,
+	backBehavior :'initialRoute'
+})
+
+const MainNavigator = createAppContainer(AuthNavigator)
 export default class App extends Component{
-  render() {
-    return (
-      <StyleProvider style={getTheme(commonColor)} >
-        <MainNavigator />
-      </StyleProvider>
-    )
-  }
+	render() {
+		return (
+			<StyleProvider style={getTheme(commonColor)} >
+				<MainNavigator />
+			</StyleProvider>
+		)
+	}
 }
