@@ -4,15 +4,17 @@ import { Text, Spinner } from 'native-base'
 import { Colors } from '../../config'
 
 import AsyncStorage from '@react-native-community/async-storage'
+import Axios from 'axios'
+import { server } from '../../config'
 export class LoadingPage extends Component {
-	state = { 
-		loading : true , 
-	}
-
 	componentDidMount() {
-		AsyncStorage.getItem('Token' , token => { 
-			console.log(token)
+		Axios.defaults.baseURL = server
+		AsyncStorage.getItem('Token' , token => {
 			if(token){
+
+				Axios.defaults.headers = {
+					Authorization: 'Token ' + token
+				}
 				this.props.navigation.navigate('MainPage')
 			}else{
 				this.props.navigation.navigate('LoginPage')				

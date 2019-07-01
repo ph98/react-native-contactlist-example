@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View , StyleSheet } from 'react-native'
 import { Container, Header, Content, Form, Item, Input , Text ,Button, Icon, Spinner, Toast} from 'native-base'
-import { Colors, server } from '../../config'
+import { Colors } from '../../config'
 import Axios from 'axios'
 
 export class LoginPage extends Component {
@@ -12,8 +12,9 @@ export class LoginPage extends Component {
 		loading : false 
 	}
 	login(){
+		this.props.navigation.navigate('MainPage')
 		this.setState({loading :true})
-		Axios.post(server + '/auth' , { username : this.state.user , password : this.state.pass}).then( ({data}) => {
+		Axios.post('/auth' , { username : this.state.user , password : this.state.pass}).then( ({data}) => {
 			console.log(data)
 			Toast.show({
 				type :'success' , 

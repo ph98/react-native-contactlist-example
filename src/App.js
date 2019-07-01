@@ -18,14 +18,15 @@ import {createDrawerNavigator , createAppContainer, createSwitchNavigator} from 
 import {SideBar} from './components/'
 
 // pages: 
-import {MainPage , LoadingPage , SignUpPage , LoginPage} from './pages'
+import {MainPage , LoadingPage , SignUpPage , LoginPage , AboutUsPage} from './pages'
 I18nManager.forceRTL(false)
 I18nManager.allowRTL(false)
 
 
 
 const DrawerNvigator = createDrawerNavigator({ 
-	MainPage
+	MainPage , 
+	AboutUsPage
 } , { 
 	drawerPosition : 'right', 
 	contentComponent : SideBar
