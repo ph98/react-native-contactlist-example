@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {  View } from 'react-native'
-import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base'
 import {withNavigation} from 'react-navigation'
 import {Colors} from '../../config'
 
@@ -11,9 +11,9 @@ export class HeaderComponent extends Component {
 			<Header style={{backgroundColor :Colors.primary , flexDirection: 'row-reverse'}}>
 				<Left >
 					<Button transparent style={{alignSelf:'flex-end'}} onPress={ _=> {
-						this.props.navigation.toggleDrawer();
+						this.props.navigation.toggleDrawer()
 					}}>
-					<Icon name='menu' />
+						<Icon name='menu' />
 					</Button>
 				</Left>
 				<Body style={{ flex:1 , justifyContent : 'center' , flexDirection:'row-reverse'}}>

@@ -11,7 +11,6 @@ export class LoadingPage extends Component {
 		Axios.defaults.baseURL = server
 		AsyncStorage.getItem('Token' , token => {
 			if(token){
-
 				Axios.defaults.headers = {
 					Authorization: 'Token ' + token
 				}

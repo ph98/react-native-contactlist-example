@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity  ,FlatList } from 'react-native'
-import { Container, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button, Icon , Fab} from 'native-base';
+import { Container, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button, Icon , Fab} from 'native-base'
 import {Header} from '../../components/header'
-import { Colors } from '../../config';
+import { Colors } from '../../config'
 export class ContactListPage extends Component {
 	state = {
 		data : [12,3,31,5,123,12312313,123,12,31,23,12,312,3,123,12,321]
@@ -16,10 +16,10 @@ export class ContactListPage extends Component {
 				<Header title='لیست مخاطبین شما' />
 				<View style={{flex:1}}>
 
-				<FlatList 
-					data={this.state.data} 
-					keyExtractor={item=>'n' + item}
-					renderItem={item=>(
+					<FlatList 
+						data={this.state.data} 
+						keyExtractor={item=>'n' + item}
+						renderItem={item=>(
 							<ListItem thumbnail>
 								<Left>
 									<Thumbnail square source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCNj6gNL3_ywCjBPOsZgwwoneojOhdatg3Tr6PtCCCLVFRZbefEA' }} />
@@ -34,15 +34,14 @@ export class ContactListPage extends Component {
 									</Button>
 								</Right>
 							</ListItem>
-					)}	
-				/>
-				<Fab
-					active={this.state.active}
-					style={{ backgroundColor: Colors.secondary }}
-					position="bottomRight"
-					onPress={() => this.props.navigation.navigate('AddContactPage') }>
-					<Icon name="add" />
-				</Fab>
+						)}	
+					/>
+					<Fab
+						style={{ backgroundColor: Colors.secondary }}
+						position="bottomRight"
+						onPress={() => this.props.navigation.navigate('AddContactPage') }>
+						<Icon name="add" />
+					</Fab>
 				</View>
 
 			</Container>

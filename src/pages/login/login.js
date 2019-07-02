@@ -39,7 +39,7 @@ export class LoginPage extends Component {
 					<Text style={{textAlign:'center' , fontFamily :'IRANSansMobile(FaNum)_Bold' , color :Colors.primary , padding:0 , fontSize:20}}> سیستم مدیریت مخاطبین</Text>
 					<Form style={{justifyContent :'center' , padding:40}}>
 						<Item rounded style={styles.item}>
-							<Input style={styles.input} placeholder="نام کاربری" />
+							<Input style={styles.input} placeholder="نام کاربری" onChangeText={ val=>this.setState({user : val })} value={this.state.user}  />
 						</Item>
 						<Item rounded style={styles.item} last>
 							<Input style={styles.input} placeholder="پسورد" />

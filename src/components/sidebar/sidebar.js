@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View , TouchableOpacity } from 'react-native'
-import { Container, Header, Content, List, ListItem, Text, Icon, Left, Body, Right, Switch ,Button} from 'native-base';
+import { Container, Header, Content, List, ListItem, Text, Icon, Left, Body, Right, Switch ,Button} from 'native-base'
 import { Colors } from '../../config'
 export class SideBarComponent extends Component {
 
@@ -18,24 +18,24 @@ export class SideBarComponent extends Component {
 					<Text style={{color :Colors.light , fontFamily :'IRANSansMobile(FaNum)_Bold'}}>دفترچه تماس من</Text>
 				</Header>
 				{this.pages.map(item=>(
-						<ListItem onPress={_=>{
-							if(item.route == 'Logout'){
-								// remove token and exit 
+					<ListItem key={'n'+ item} onPress={_=>{
+						if(item.route == 'Logout'){
+							// remove token and exit 
 								
-								this.props.navigation.navigate('LoginPage')								
-							}
-							this.props.navigation.navigate(item.route)
+							this.props.navigation.navigate('LoginPage')								
+						}
+						this.props.navigation.navigate(item.route)
 							
-						}} icon>
-							<Left>
+					}} icon>
+						<Left>
 							<Button style={{ backgroundColor: Colors.secondary }}>
 								<Icon active name={item.icon} />
 							</Button>
-							</Left>
-							<Body >
-								<Text style={{ textAlign :'right'}}>{item.name}</Text>
-							</Body>
-						</ListItem>
+						</Left>
+						<Body >
+							<Text style={{ textAlign :'right'}}>{item.name}</Text>
+						</Body>
+					</ListItem>
 				))}
 			</Content>
 		)
