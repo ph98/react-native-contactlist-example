@@ -3,27 +3,40 @@ import { View , StyleSheet } from 'react-native'
 import { Container, Header, Content, Form, Item, Input , Text ,Button, Icon, Spinner, Toast} from 'native-base'
 import { Colors, server } from '../../config'
 import Axios from 'axios'
+import AsyncStorage from '@react-native-community/async-storage'
 
 export class SignUpPage extends Component {
 
-	state = { 
-		user : '' , 
-		pass : '' , 
-		loading : false 
+	state = {
+		username: '',
+		first_name: '',
+		last_name: '',
+		phone_number: '',
+		image: null,
+		password: '' , 
+		loading : false
 	}
 	SignUp(){
 		this.setState({loading :true})
-		Axios.post(server + '/auth' , { username : this.state.user , password : this.state.pass}).then( ({data}) => {
-			console.log(data)
+		Axios.post('signup/' , this.state).then( async ({data}) => {
+			console.log(data.token)
+			try{
+				await AsyncStorage.setItem('Token' , data.token)
+
+			}catch(err){
+				console.log(err)
+			}
 			Toast.show({
 				type :'success' , 
-				text :'با موفقیت وارد سیستم شدید.' 
+				text :'ثبت نام موفقیت آمیز بود، در حال ورود به سیستم...' 
 			})
+			this.props.navigation.navigate('LoadingPage')
+
 		}).catch(err=>{
 			console.log(err)
 			Toast.show({
 				type :'danger' , 
-				text :'نام کاربری یا پسورد شما اشتباه است!' 
+				text :'اطلاعات ورودی اشتباه است' 
 			})
 		}).finally( _=>{
 			this.setState({loading : false})
@@ -37,20 +50,20 @@ export class SignUpPage extends Component {
 					<Text style={{textAlign:'center' , fontFamily :'IRANSansMobile(FaNum)_Bold' , color :Colors.primary , padding:50 , fontSize:30}}> ثبت نام در سیستم </Text>
 					<Form style={{justifyContent :'center' , padding:40}}>
 						<Item rounded style={styles.item}>
-							<Input style={styles.input} placeholder="نام" />
+							<Input value={this.state.first_name} onChangeText={val=>this.setState({first_name : val})} style={styles.input} placeholder="نام" />
 						</Item>
 						<Item rounded style={styles.item}>
-							<Input style={styles.input} placeholder="نام خانوادگی" />
+							<Input  value={this.state.last_name} onChangeText={val=>this.setState({last_name : val})}  style={styles.input} placeholder="نام خانوادگی" />
 						</Item>
 						<Item rounded style={styles.item}>
-							<Input style={styles.input} keyboardType='number-pad' placeholder="شماره تلفن" />
+							<Input  value={this.state.phone_number} onChangeText={val=>this.setState({phone_number : val})}  style={styles.input} keyboardType='number-pad' placeholder="شماره تلفن" />
 						</Item>
 						<Item rounded style={styles.item}>
-							<Input style={styles.input} placeholder="نام کاربری" />
+							<Input  value={this.state.username} onChangeText={val=>this.setState({username : val})}  style={styles.input} placeholder="نام کاربری" />
 						</Item>
 
 						<Item rounded style={styles.item} last>
-							<Input style={styles.input} secureTextEntry placeholder="پسورد" />
+							<Input  value={this.state.password} onChangeText={val=>this.setState({password : val})}  style={styles.input} secureTextEntry placeholder="پسورد" />
 						</Item>
 						{
 							this.state.loading ? 

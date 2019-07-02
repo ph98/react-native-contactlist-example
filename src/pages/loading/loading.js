@@ -7,18 +7,22 @@ import AsyncStorage from '@react-native-community/async-storage'
 import Axios from 'axios'
 import { server } from '../../config'
 export class LoadingPage extends Component {
-	componentDidMount() {
+	async componentDidMount() {
+
 		Axios.defaults.baseURL = server
-		AsyncStorage.getItem('Token' , token => {
-			if(token){
-				Axios.defaults.headers = {
-					Authorization: 'Token ' + token
-				}
-				this.props.navigation.navigate('MainPage')
-			}else{
-				this.props.navigation.navigate('LoginPage')				
+		const token = await AsyncStorage.getItem('Token')
+		if(token){
+			Axios.defaults.headers = {
+				Authorization: 'Token ' + token
 			}
-		})
+			this.props.navigation.navigate('MainPage')
+		}else{
+
+			Axios.defaults.headers = {
+
+			}
+			this.props.navigation.navigate('LoginPage')				
+		}
 	}
 
 	render() {

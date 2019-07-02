@@ -10,7 +10,7 @@ import React, {Component} from 'react'
 
 import { I18nManager } from 'react-native'
 import commonColor from './native-base-theme/variables/commonColor'
-import {StyleProvider } from 'native-base'
+import {StyleProvider,Root } from 'native-base'
 import getTheme from './native-base-theme/components'
 
 import {createDrawerNavigator , createAppContainer, createSwitchNavigator} from 'react-navigation'
@@ -47,7 +47,9 @@ export default class App extends Component{
 	render() {
 		return (
 			<StyleProvider style={getTheme(commonColor)} >
-				<MainNavigator />
+				<Root>
+					<MainNavigator />
+				</Root>
 			</StyleProvider>
 		)
 	}

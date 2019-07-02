@@ -1,4 +1,4 @@
-const server = '192.168.0.1:9000' 
+const server = 'https://contactdjango-omid24.fandogh.cloud/' 
 
 export {
 	server
