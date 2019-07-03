@@ -8,6 +8,6 @@ i hope this project will save someone's life(at least time) :-)
 dont forget to star , thank you :star2:
 
 ---
-this app developed With <3 in just 2 day off , 
+this app developed With <3 
 connected to fandogh hosted django app 
 
