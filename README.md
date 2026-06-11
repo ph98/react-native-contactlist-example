@@ -1,3 +1,6 @@
+⚠️ Deprecated
+This project is no longer maintained and is kept here for historical/reference purposes only.
+
 # react-native-contactlist-example
 sample react native application for showing some contact . 
 i used native base components 
